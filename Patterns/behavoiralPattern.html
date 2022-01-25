@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>behavoiral pattern</title>
+</head>
+
+<body>
+    <h1>handling communication b/w objects</h1>
+    <script>
+        /**
+         * Iterator Design Pattern
+         * The iterator design pattern lets you traverse elements of a collection (Arrays, LinkedList, Trees, Graphs, etc.)
+         * without exposing its underlying implementation
+         */
+
+        /** 
+         * Observer Design Pattern
+         * The observer design pattern lets you define subscription mechanisms so 
+         * that objects can communicate the changes happening in one part of the system to the rest of the world.
+        */
+
+        class Subject {
+            constructor() {
+                this.criticalNumber = 0
+                this.observers = []
+            }
+
+            addObserver(observer) {
+                this.observers.push(observer)
+            }
+
+            removeObserver(observer) {
+                let index = this.observers.findIndex(o => o === observer)
+                if (index !== -1) {
+                    this.observers.splice(index, 1)
+                }
+            }
+
+            notify() {
+                console.log('Notifying observers about some important information')
+                this.observers.forEach(observer => {
+                    observer.update(this.criticalNumber)
+                })
+            }
+
+            changeCriticalNumber() {
+                /* Changing the critical information */
+                this.criticalNumber = 42
+                /* Notifying the observers about this change */
+                this.notify()
+            }
+        }
+
+        class Observer {
+            constructor(id) {
+                this.id = id
+            }
+
+            update(criticalNumber) {
+                console.log(`Observer ${this.id} - Received an update from the subject ${criticalNumber}`)
+            }
+        }
+
+        /**
+         * memento design pattern
+         * pattern provides temporary storage as well as restoration of an object. The mechanism in which you store the object’s state depends on the required duration of persistence,
+         */
+    </script>
+</body>
+
+</html>

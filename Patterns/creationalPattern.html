@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>creational pattern</title>
+</head>
+
+<body>
+    <h1>For handling object creation mechanism</h1>
+    <script>
+        /** 
+         * constructor pattern */
+        let constructor1 = new Object();
+        function Obj() {
+            this.id = 1;
+        }
+        let constructor2 = new Obj();
+        class Obj1 {
+            constructor() { }
+        }
+        let constructor3 = new Obj1();
+        let constructor4 = {};
+
+        /**
+         *  prototype pattern 
+         *  prototype design pattern lets us create clones of the existing objects
+         * */
+
+        let prototype1 = Object.create(Array.prototype);
+        let objForPrototype = {
+            draw: function () {
+                console.log('prototype pattern');
+            }
+        }
+
+        function Obj2() { };
+        Obj2.prototype = objForPrototype;
+        let prototype2 = new Obj2();
+        prototype2.draw();
+
+        /**
+         * singleton design pattern
+         */
+
+        class Singleton {
+            static instance;
+            static getInstance() {
+                if (Singleton.instance) {
+                    return Singleton.instance;
+                } else {
+                    Singleton.instance = new Singleton();
+                    return Singleton.instance;
+                }
+            }
+        }
+
+        console.log(Singleton.getInstance() === Singleton.getInstance())
+
+        /**
+         * Factory pattern
+         */
+
+        class Test1 {
+            constructor() {
+                console.log("constructor from Test1")
+            }
+        }
+
+        class Test2 {
+            constructor() {
+                console.log("constructor from Test1")
+            }
+        }
+
+        class Factory {
+            constructor(name, id) {
+                switch (id) {
+                    case 1:
+                        return new Test1();
+                        break;
+                    case 2:
+                        return new Test2();
+                    default:
+                        throw new Error();
+                }
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
